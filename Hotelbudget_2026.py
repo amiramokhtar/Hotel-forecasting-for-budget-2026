@@ -29,12 +29,15 @@ st.markdown("### Advanced forecasting and predictive modeling for hotel Hotel bu
 # Load data from session state or file
 if 'df' in st.session_state:
     df = st.session_state.df
-    df_filtered = st.session_state.df_filtered
 else:
-    DATA_FILE = "D:/Bech albtros analysis/Cleaned_Hotel_Booking.csv"
-
+    DATA_FILE = "C:/Users/ICONS/Documents/hotel_data/Cleaned_Hotel_Booking.csv"
     if os.path.exists(DATA_FILE):
         df = pd.read_csv(DATA_FILE)
+        ...
+    else:
+        st.error("Please upload the dataset first from the main page.")
+        st.stop()
+
         # Convert date columns if available
         if 'Arrival date' in df.columns:
             df['Arrival date'] = pd.to_datetime(df['Arrival date'], errors='coerce')
